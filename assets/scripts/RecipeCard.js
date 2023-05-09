@@ -129,6 +129,16 @@ class RecipeCard extends HTMLElement {
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
 
+    // initialize rating and numRatings' default as 0
+    // set to data.rating only when inputs are provided
+    let rating = 0;
+    let numRatings = 0;
+    if(data.rating !== undefined){
+      rating = data.rating;
+    }
+    if (data.numRatings !== ''){
+      numRatings = data.numRatings;
+    }
 
     article.innerHTML = `
       <img src="${data.imgSrc}"
@@ -138,9 +148,9 @@ class RecipeCard extends HTMLElement {
       </p>
       <p class="organization">${data.organization}</p>
       <div class="rating">
-        <span>${data.rating}</span>
-        <img src="./assets/images/icons/${data.rating}-star.svg" alt="${data.rating} stars">
-        <span>(${data.numRatings})</span>
+        <span>${rating}</span>
+        <img src="./assets/images/icons/${rating}-star.svg" alt="${rating} stars">
+        <span>(${numRatings})</span>
       </div>
       <time>${data.lengthTime}</time>
       <p class="ingredients">
